@@ -1,0 +1,70 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+//
+////패키지 빌드 추가
+//def webappDir = "$todolistDir/webapp" sourceSets {
+//	main {
+//		resources {
+//			srcDirs = ["$todolistDir/src/main/resources"]
+//		}
+//	}
+//}
+//processResources {
+//	dependsOn "copyReactBuildFiles"
+//}
+//task installReact(type: Exec) {
+//	workingDir "$webappDir"
+//	inputs.dir "$webappDir"
+//	group = BasePlugin.BUILD_GROUP
+//	if(System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//		commandLine "npm.cmd", "audit", "fix" commandLine 'npm.cmd', 'install'
+//	} else {
+//		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+//	}
+//}
+//task buildReact(type: Exec) {
+//	dependsOn "installReact"
+//	workingDir "$webappDir"
+//	inputs.dir "$webappDir"
+//	group = BasePlugin.BUILD_GROUP
+//	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//		commandLine "npm.cmd", "run-script", "build"
+//	} else {
+//		commandLine "npm", "run-script", "build"
+//	}
+//}
+//task copyReactBuildFiles(type: Copy) {
+//	dependsOn "buildReact"
+//	from "$webappDir/build"
+//	into "$todolistDir/src/main/resources/static"
+//}
+
